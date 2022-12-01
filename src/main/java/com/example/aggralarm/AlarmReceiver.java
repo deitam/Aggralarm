@@ -38,23 +38,15 @@ public class AlarmReceiver extends BroadcastReceiver {
         // play ringtone
         ringtone.play();
 
-
-        //start activity
-//        TODO doesnt work, start a full screen notification instead, or a notification that opens an activity
-
         Intent intentService = new Intent(context, AlarmService.class);
-//        context.startForegroundService(intentService);
-        Toast.makeText(context, "Opening service", Toast.LENGTH_LONG).show();
 
-        context.startService(intentService);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            Toast.makeText(context, "Opening foreground service", Toast.LENGTH_LONG).show();
-//            context.startForegroundService(intentService);
-//        } else {
-//            Toast.makeText(context, "Opening service", Toast.LENGTH_LONG).show();
-//            context.startService(intentService);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Toast.makeText(context, "Opening foreground service", Toast.LENGTH_LONG).show();
+            context.startForegroundService(intentService);
+        } else {
+            Toast.makeText(context, "Opening service", Toast.LENGTH_LONG).show();
+            context.startService(intentService);
         }
 
-//        context.startActivity(i);
-//    }
+    }
 }
