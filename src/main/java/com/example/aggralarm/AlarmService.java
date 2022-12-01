@@ -28,6 +28,7 @@ public class AlarmService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         int alarmId = new Random().nextInt(Integer.MAX_VALUE);
         Toast.makeText(this, "Making intent", Toast.LENGTH_LONG).show();
+//        BASED ON TOASTS, THE CODE BREAKS ON THE LINE BELOW
         Intent i = new Intent(this, AlarmActivity.class);
         Toast.makeText(this, "Making pending intent", Toast.LENGTH_LONG).show();
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), alarmId, i, PendingIntent.FLAG_IMMUTABLE);
