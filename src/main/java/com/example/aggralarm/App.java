@@ -16,6 +16,7 @@ public class App extends Application {
     }
 
     private void createNotificationChannnel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel serviceChannel = new NotificationChannel(
                     CHANNEL_ID,
                     "Alarm Service Channel",
@@ -24,6 +25,6 @@ public class App extends Application {
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(serviceChannel);
-
+        }
     }
 }
