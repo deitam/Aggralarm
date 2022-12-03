@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (((Switch) view).isChecked()) {
-                    alarm.turnOn(context, alarmManager);
+                    alarm.turnOn(getApplicationContext(), alarmManager);
                 } else {
-                    alarm.turnOff(context, alarmManager);
+                    alarm.turnOff(getApplicationContext(), alarmManager);
                 }
             }
         });

@@ -110,6 +110,7 @@ public class SetAlarm {
 
     public void turnOff(Context context, AlarmManager alarmManager) {
         Intent intent = new Intent(context, AlarmReceiver.class);
+        intent.setAction(Integer.toString(id));
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 context,
