@@ -9,6 +9,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Toast;
 
@@ -21,6 +22,19 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     // implement onReceive() method
     public void onReceive(Context context, Intent intent) {
+//        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+//
+//        Bundle b = intent.getExtras();
+//        int value = b.getInt("ALARM_EXTRA");
+//        SetAlarm alarm = AlarmDatabase.getAlarm(value);
+//        Toast.makeText(context, String.format("Playing alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
+//        boolean recurring = alarm.monday || alarm.tuesday || alarm.wednesday || alarm.thursday || alarm.friday || alarm.saturday || alarm.sunday;
+//
+//        if (!recurring) {
+//            alarm.enabled = false;
+//            AlarmDatabase.updateAlarm(alarm);
+//        }
+
 
         // we will use vibrator first
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);

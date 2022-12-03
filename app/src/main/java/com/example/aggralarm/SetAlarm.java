@@ -6,6 +6,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -109,6 +110,9 @@ public class SetAlarm {
 
     public void turnOff(Context context, AlarmManager alarmManager) {
         Intent intent = new Intent(context, AlarmReceiver.class);
+        Bundle b = new Bundle();
+        b.putInt("ALARM_EXTRA", id); //Your id
+        intent.putExtras(b);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 context,
                 id,

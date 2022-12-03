@@ -22,7 +22,6 @@ import java.util.Random;
 
 public class AlarmCreate extends AppCompatActivity {
     TimePicker alarmTimePicker;
-    PendingIntent pendingIntent;
     AlarmManager alarmManager;
     SetAlarm alarm;
 
