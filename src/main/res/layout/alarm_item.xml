@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/listPreferredItemHeight"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/ar_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="start|bottom"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        tools:text="7:00"/>
+
+    <TextView
+        android:id="@+id/ar_am_pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBaseline="@+id/ar_time"
+        android:layout_toRightOf="@+id/ar_time"
+        android:layout_toEndOf="@+id/ar_time"
+        tools:text="AM"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/ar_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/ar_am_pm"
+        android:layout_toEndOf="@+id/ar_am_pm"
+        android:layout_toLeftOf="@+id/switch1"
+        android:layout_toStartOf="@+id/switch1"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/ar_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Wake Up"/>
+
+        <TextView
+            android:id="@+id/ar_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Mo Tu We Th Fr Sa Su"/>
+
+        <TextView
+            android:id="@+id/ar_quest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Quest: MATH"/>
+
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+
+</RelativeLayout>
