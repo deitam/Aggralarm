@@ -22,25 +22,31 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     // implement onReceive() method
     public void onReceive(Context context, Intent intent) {
-//        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+
+        Bundle b = intent.getExtras();
+        if(b != null) {
+            int value = b.getInt("ALARM_EXTRA");
+            Toast.makeText(context, String.format("Playing alarm -  %2d", value), Toast.LENGTH_SHORT).show();
+//            SetAlarm alarm = AlarmDatabase.getAlarm(value);
+//            Toast.makeText(context, String.format("Playing alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
+//            boolean recurring = alarm.monday || alarm.tuesday || alarm.wednesday || alarm.thursday || alarm.friday || alarm.saturday || alarm.sunday;
 //
-//        Bundle b = intent.getExtras();
-//        int value = b.getInt("ALARM_EXTRA");
-//        SetAlarm alarm = AlarmDatabase.getAlarm(value);
-//        Toast.makeText(context, String.format("Playing alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
-//        boolean recurring = alarm.monday || alarm.tuesday || alarm.wednesday || alarm.thursday || alarm.friday || alarm.saturday || alarm.sunday;
-//
-//        if (!recurring) {
-//            alarm.enabled = false;
-//            AlarmDatabase.updateAlarm(alarm);
-//        }
+//            if (!recurring) {
+//                alarm.enabled = false;
+//                AlarmDatabase.updateAlarm(alarm);
+//            }
+        } else {
+            Toast.makeText(context, "No bundle found", Toast.LENGTH_SHORT).show();
+        }
 
 
         // we will use vibrator first
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);
 
-        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+
+        Toast.makeText(context, "Alarm! Wake up! Wake  up!", Toast.LENGTH_LONG).show();
         Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (alarmUri == null) {
             alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
