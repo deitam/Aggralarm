@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import java.util.Calendar;
+
 public class AlarmReceiver extends BroadcastReceiver {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -24,22 +26,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
 
-        Bundle b = intent.getExtras();
-        if(b != null) {
-            int value = b.getInt("ALARM_EXTRA");
-            Toast.makeText(context, String.format("Playing alarm -  %2d", value), Toast.LENGTH_SHORT).show();
-//            SetAlarm alarm = AlarmDatabase.getAlarm(value);
-//            Toast.makeText(context, String.format("Playing alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
-//            boolean recurring = alarm.monday || alarm.tuesday || alarm.wednesday || alarm.thursday || alarm.friday || alarm.saturday || alarm.sunday;
-//
-//            if (!recurring) {
-//                alarm.enabled = false;
-//                AlarmDatabase.updateAlarm(alarm);
-//            }
-        } else {
-            Toast.makeText(context, "No bundle found", Toast.LENGTH_SHORT).show();
-        }
+        int value = Integer.parseInt(intent.getAction());
+        SetAlarm alarm = AlarmDatabase.getAlarm(value);
+        Toast.makeText(context, String.format("Playing alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
+        boolean recurring = alarm.monday || alarm.tuesday || alarm.wednesday || alarm.thursday || alarm.friday || alarm.saturday || alarm.sunday;
 
+        if (!recurring) {
+            alarm.enabled = false;
+            AlarmDatabase.updateAlarm(alarm);
+        } else {
+            if (!alarmIsToday(alarm)) return;
+        }
 
         // we will use vibrator first
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -68,5 +65,43 @@ public class AlarmReceiver extends BroadcastReceiver {
             context.startService(intentService);
         }
 
+    }
+
+    public boolean alarmIsToday(SetAlarm alarm) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int today = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch(today) {
+            case Calendar.MONDAY:
+                if (alarm.monday)
+                    return true;
+                return false;
+            case Calendar.TUESDAY:
+                if (alarm.tuesday)
+                    return true;
+                return false;
+            case Calendar.WEDNESDAY:
+                if (alarm.wednesday)
+                    return true;
+                return false;
+            case Calendar.THURSDAY:
+                if (alarm.thursday)
+                    return true;
+                return false;
+            case Calendar.FRIDAY:
+                if (alarm.friday)
+                    return true;
+                return false;
+            case Calendar.SATURDAY:
+                if (alarm.saturday)
+                    return true;
+                return false;
+            case Calendar.SUNDAY:
+                if (alarm.sunday)
+                    return true;
+                return false;
+        }
+        return false;
     }
 }

@@ -77,10 +77,7 @@ public class SetAlarm {
 
         // BroadcastReceiver
         Intent intent = new Intent(context, AlarmReceiver.class);
-        Bundle b = new Bundle();
-        Toast.makeText(context, String.format("Putting extra -  %2d", id), Toast.LENGTH_SHORT).show();
-        b.putInt("ALARM_EXTRA", id); //Your id
-        intent.putExtras(b);
+        intent.setAction(Integer.toString(id));
         // we call broadcast using pendingIntent
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_MUTABLE);
         boolean recurring = monday || tuesday || wednesday || thursday || friday || saturday || sunday;
