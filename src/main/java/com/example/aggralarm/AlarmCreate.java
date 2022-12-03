@@ -2,6 +2,7 @@ package com.example.aggralarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class AlarmCreate extends AppCompatActivity {
@@ -41,6 +43,46 @@ public class AlarmCreate extends AppCompatActivity {
             alarm = AlarmDatabase.getAlarm(value);
             Toast.makeText(this, String.format("Selected alarm -  %2d", alarm.id), Toast.LENGTH_SHORT).show();
             getSupportActionBar().setTitle("Edit alarm");
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmTimePicker.setMinute(alarm.minutes);
+                alarmTimePicker.setHour(alarm.hours);
+            } else {
+                alarmTimePicker.setCurrentMinute(alarm.minutes);
+                alarmTimePicker.setCurrentHour(alarm.hours);
+            }
+
+            CheckBox monday = (CheckBox) findViewById(R.id.checkBox1);
+            CheckBox tuesday = (CheckBox) findViewById(R.id.checkBox2);
+            CheckBox wednesday = (CheckBox) findViewById(R.id.checkBox3);
+            CheckBox thursday = (CheckBox) findViewById(R.id.checkBox4);
+            CheckBox friday = (CheckBox) findViewById(R.id.checkBox5);
+            CheckBox saturday = (CheckBox) findViewById(R.id.checkBox6);
+            CheckBox sunday = (CheckBox) findViewById(R.id.checkBox7);
+
+            if (alarm.monday) monday.setChecked(true);
+            if (alarm.tuesday) tuesday.setChecked(true);
+            if (alarm.wednesday) wednesday.setChecked(true);
+            if (alarm.thursday) thursday.setChecked(true);
+            if (alarm.friday) friday.setChecked(true);
+            if (alarm.saturday) saturday.setChecked(true);
+            if (alarm.sunday) sunday.setChecked(true);
+
+            TextView label = (TextView) findViewById(R.id.alarmLabel);
+            label.setText(alarm.label);
+
+            RadioButton rbNoQuest = findViewById(R.id.rbNoQuest);
+            RadioButton rbShakeQuest = findViewById(R.id.rbShakeQuest);
+            RadioButton rbMathQuest = findViewById(R.id.rbMathQuest);
+
+            if (Objects.equals(alarm.quest, "NONE")){
+                rbNoQuest.setChecked(true);
+            } else if (Objects.equals(alarm.quest, "SHAKE")){
+                rbShakeQuest.setChecked(true);
+            } else if (Objects.equals(alarm.quest, "MATH")){
+                rbMathQuest.setChecked(true);
+            }
+
         } else {
             ImageButton deleteButton = (ImageButton) findViewById(R.id.DeleteButton);
             deleteButton.setVisibility(View.GONE);
