@@ -27,7 +27,22 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AlarmActivity">
+            android:name=".AlarmActivity"
+            android:showForAllUsers="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
+        </activity>
+        <activity
+            android:name=".ShakeAlarmActivity"
+            android:showForAllUsers="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
+        </activity>
+        <activity
+            android:name=".MathAlarmActivity"
+            android:showForAllUsers="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
         </activity>
         <activity
             android:name=".AlarmCreate"
@@ -48,5 +63,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
 </manifest>

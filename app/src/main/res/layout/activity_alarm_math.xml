@@ -8,12 +8,26 @@
 
 
     <TextView
-        android:id="@+id/noneAlarmLabel"
+        android:id="@+id/mathAlarmLabel"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:text="Label goes here"
         android:gravity="center"
         android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/mathAlarmProblem"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="12 + 45 ="
+        android:textSize="40sp" />
+
+    <com.example.aggralarm.KeyboardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.aggralarm.KeyboardView>
 
     <Button
         android:id="@+id/button"
